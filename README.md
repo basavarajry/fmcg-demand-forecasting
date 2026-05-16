@@ -108,6 +108,4 @@ Edit `configs/config.yaml` for horizons, TFT hyperparameters, drift thresholds, 
 - [Data Flow](docs/data_flow.md)
 - [Data Dictionary](configs/data_schema.yaml)
 
-## License
 
-MIT
