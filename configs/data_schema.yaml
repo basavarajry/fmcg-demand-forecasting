@@ -1,0 +1,66 @@
+# Data dictionary for FMCG demand forecasting pipeline
+
+sales_history:
+  date: "Transaction date (datetime)"
+  sku_id: "Stock keeping unit identifier"
+  dc_id: "Distribution center identifier"
+  demand: "Units sold / demand quantity (target)"
+  revenue: "Optional revenue in currency units"
+
+promotional_calendar:
+  date: "Promotion date"
+  sku_id: "SKU under promotion"
+  dc_id: "Distribution center (optional)"
+  promo_flag: "Binary promotion indicator"
+  discount_pct: "Discount percentage 0-100"
+  promo_type: "Type: display, price_cut, bogo, etc."
+
+holiday_calendar:
+  date: "Holiday or event date"
+  region: "Geographic region"
+  holiday_name: "Event name"
+  is_holiday: "Binary holiday indicator"
+
+inventory:
+  date: "Snapshot date"
+  sku_id: "SKU identifier"
+  dc_id: "Distribution center"
+  on_hand: "Units on hand"
+  in_transit: "Units in transit"
+  safety_stock: "Safety stock level"
+
+competitor_pricing:
+  date: "Price observation date"
+  sku_id: "Comparable SKU or category"
+  competitor_price: "Competitor unit price"
+  our_price: "Our unit price"
+  price_index: "Competitor / our price ratio"
+
+web_trends:
+  date: "Trend date"
+  keyword: "Search keyword or category"
+  trend_index: "Normalized search interest 0-100"
+
+macroeconomic:
+  date: "Indicator date"
+  gdp_growth: "GDP growth rate"
+  inflation: "CPI inflation rate"
+  unemployment: "Unemployment rate"
+  consumer_confidence: "Consumer confidence index"
+
+sku_metadata:
+  sku_id: "SKU identifier"
+  category: "Product category"
+  brand: "Brand name"
+  subcategory: "Subcategory"
+  unit_weight: "Unit weight kg"
+  is_perishable: "Perishable flag"
+  launch_date: "Product launch date"
+
+dc_metadata:
+  dc_id: "Distribution center ID"
+  region: "Geographic region"
+  state: "State/province"
+  capacity: "Storage capacity units"
+  latitude: "Latitude"
+  longitude: "Longitude"

@@ -1,0 +1,92 @@
+project:
+  name: "AI-Powered Multi-Horizon Demand Forecasting System for FMCG Supply Chains"
+  version: "1.0.0"
+
+data:
+  dataset: "synthetic"  # synthetic | m5 | favorita | uci
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  external_dir: "data/external"
+  date_col: "date"
+  target_col: "demand"
+  group_cols: ["sku_id", "dc_id"]
+  freq: "D"
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  max_skus: 500
+  max_dcs: 50
+  min_history_days: 90
+
+preprocessing:
+  fill_method: "forward"
+  outlier_method: "iqr"
+  outlier_iqr_factor: 1.5
+  scale_method: "robust"
+
+features:
+  lags: [1, 7, 14, 28]
+  rolling_windows: [7, 14, 28]
+  fourier_orders: [3, 7, 14]
+  include_holidays: true
+  include_promotions: true
+
+forecasting:
+  horizons: [7, 14, 28]
+  primary_horizon: 28
+  encoder_length: 90
+  prediction_length: 28
+  quantiles: [0.1, 0.5, 0.9]
+
+models:
+  baseline:
+    - moving_average
+    - arima
+    - sarima
+    - ets
+  ml:
+    - xgboost
+    - lightgbm
+    - random_forest
+    - catboost
+  deep:
+    - lstm
+    - gru
+    - seq2seq
+    - attention_lstm
+  primary: tft
+
+tft:
+  hidden_size: 64
+  attention_head_size: 4
+  dropout: 0.1
+  hidden_continuous_size: 16
+  learning_rate: 0.03
+  max_epochs: 50
+  batch_size: 64
+  gradient_clip_val: 0.1
+  mixed_precision: true
+  gpus: 1
+
+training:
+  seed: 42
+  n_folds: 5
+  early_stopping_patience: 10
+  optuna_trials: 30
+  checkpoint_dir: "models/checkpoints"
+
+monitoring:
+  wmape_threshold: 0.25
+  drift_threshold: 0.1
+  retrain_on_drift: true
+  retrain_on_new_data: true
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  max_batch_size: 1000
+
+aws:
+  region: "us-east-1"
+  s3_bucket: "fmcg-forecast-models"

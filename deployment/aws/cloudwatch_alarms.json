@@ -1,0 +1,27 @@
+{
+  "alarms": [
+    {
+      "AlarmName": "FMCG-Forecast-High-WMAPE",
+      "MetricName": "WMAPE",
+      "Namespace": "FMCG/Forecasting",
+      "Statistic": "Average",
+      "Period": 3600,
+      "EvaluationPeriods": 2,
+      "Threshold": 25.0,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "AlarmActions": ["arn:aws:sns:us-east-1:ACCOUNT_ID:forecast-retrain-topic"],
+      "AlarmDescription": "Trigger retraining when WMAPE exceeds 25%"
+    },
+    {
+      "AlarmName": "FMCG-Forecast-API-Errors",
+      "MetricName": "5XXError",
+      "Namespace": "AWS/ApplicationELB",
+      "Statistic": "Sum",
+      "Period": 300,
+      "EvaluationPeriods": 1,
+      "Threshold": 10,
+      "ComparisonOperator": "GreaterThanThreshold",
+      "AlarmDescription": "High API error rate on forecast service"
+    }
+  ]
+}

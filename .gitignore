@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data & models
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+models/
+*.pkl
+*.pt
+*.ckpt
+lightning_logs/
+
+# MLflow
+mlruns/*
+!mlruns/.gitkeep
+
+# Secrets
+.env
+*.pem
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+reports/
+*.log
+tensorboard/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# AWS
+.aws/
